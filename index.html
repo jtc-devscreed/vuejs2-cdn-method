@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>VueJS 2 Tutorials</title>
+    <!-- #1 - Introduction: Install VueJS CDN (script src) & link stylesheet (css) -->
+    <link rel="stylesheet" href="styles.css"> <!-- #1 << link stylesheet -->
+    <script src="https://vuejs.org/js/vue.js" ></script> <!-- #1 << this is the Vue CDN -->
+  </head>
+  <body>
+    <!-- #2 | The Vue Instance
+    *Please install Atom Package - atom-live-server
+    **Usage:
+      ctrl-alt-l launch live server on port 3000.
+      ctrl-alt-q stop live server.
+      ctrl-alt-3 launch live server on port 3000.
+      ctrl-alt-4 launch live server on port 4000.
+      ctrl-alt-5 launch live server on port 5000.
+      ctrl-alt-8 launch live server on port 8000.
+      ctrl-alt-9 launch live server on port 9000.
+
+    <div id="vue-app---the-vue-instance"> #2 << this is the root element
+      <h1>{{ name }}</h1> #2 TEMPLATE SYNTAX or STRING INTERPOLATION which outputs data from js file
+    </div> -->
+
+    <!-- #3 - Data & Methods
+    <div id="vue-app---data-and-methods">
+      <h1>{{ greet('Night') }}</h1> <<< Call a  function from the js file using name + () i.e. "greet()"
+        | we can put any value as a parameter inside this function, i.e. "afternoon" then pass it to our js file with any name we want.
+      <h1>Name: {{ name }}</h1>
+      <p>Job: {{ job }}</p>
+      Note: We cannot access any data outside this div's vue instance.
+    </div> -->
+
+    <!-- #4 | Data Binding | Bind data to an attribute (href) through a directive/instruction (v-bind), i.e. "v-bind:href" << longhand/explicit method
+          colon ":" is the shorthand method, i.e. ":href"
+    <div id="vue-app---data-binding">
+      <h1>Data Binding</h1>
+      <a v-bind:href="website">devsCreed</a> << longhand/explicit method
+      <br>
+      <a :href="website">devsCreed</a> << shorthand method
+      <br>
+      <input type="text" v-bind:value="name"> longhand/explicit method
+      <br>
+      <input type="text" v-bind:value="name"> shorthand method
+      <br>
+      <input type="text" :value="job"> longhand/explicit method
+      <br>
+      <input type="text" :value="job"> shorthand method
+      <p v-html="websiteTag"></p> >> using v-html directive to bind data from websiteTags
+    </div> -->
+
+    <!-- #5 | Events | add buttons that adds or subtracts value | listens to DOM Events (Document Object Model using "v-on"/"@" directives/instructions)
+    <div id="vue---app-events">
+      <h1>Events | using "age++/age--" & "v-on:click" directive to access data property</h1>
+      <button @click="age1++">Add a Year</button> |<< access & adds a year to the age data property | "@click" is the shorthand method
+      <button v-on:click="age1--">Subtract a Year</button> |<< access & subtracts a year to the age data property
+      <p>My age is {{ age1 }}</p>
+
+      <h1>Events | Using methods | Adds/Subtracts 1 Year (single-click) & 10 Years (double-click)</h1>
+      <button @click="add(1)">Add a Year</button> | << "@click" is the shorthand method
+      <button v-on:click="subtract(1)">Subtract a Year</button>
+      <br>
+      <button @dblclick="add(10)">Add 10 Years on Double Click</button> | "@dblclick" is the shorthand method
+      <button v-on:dblclick="subtract(10)">Subtract 10 Years on Double Click</button>
+      <p>My age is {{ age2 }}</p>
+      <div id="canvas" v-on:mousemove="updateXY">{{ x }}, {{ y }}</div>
+    </div> -->
+
+    <!-- #6 | Events Modifiers | i.e. "once", "prevent" | other modifiers: "stop", "capture", "self"
+    <div id="vue-app-event-modifiers">
+      <h1>Events Modifiers</h1>
+      <button v-on:click.once="age1++">Add a Year</button> |<< "once" event modifier so will only listen/respond on the first click
+      <button v-on:click="age1--">Subtract a Year</button>
+      <p>My age is {{ age1 }}</p>
+
+      <h1>Events | Using methods | Adds/Subtracts 1 Year (single-click) & 10 Years (double-click)</h1>
+      <button @click="add(1)">Add a Year</button>
+      <button v-on:click="subtract(1)">Subtract a Year</button>
+      <br>
+      <button @dblclick="add(10)">Add 10 Years on Double Click</button>
+      <button v-on:dblclick="subtract(10)">Subtract 10 Years on Double Click</button>
+      <p>My age is {{ age2 }}</p>
+      <div id="canvas" v-on:mousemove="updateXY">{{ x }}, {{ y }}</div>
+      <a v-on:click.prevent="click" href="http://www.devscreed.com.ph">devsCreed</a> |<< "prevent" event modifier to disable redirecting to a website
+    </div> -->
+
+    <!-- #7 | Keyboard Events | modifiers: "onkeydown", "onkeypress", "onkeyup"
+    <div id="vue-app---keyboard-events">
+      <h1>Keyboard Events</h1>
+      <label>Name:</label>
+      <input type="text" @keyup.enter="logName" /> << @keyup is the shorthand method thus "v-on" is equivalent to "@"
+      <label>Age:</label>
+      <input type="text" v-on:keyup.alt.enter="logAge" /> << can be combined with ALT key
+    </div> -->
+
+    <!-- #8 | Two-Way Data Binding | v-model directive
+    <div id="vue-app---two-way-data-binding">
+      <h1>Two-Way Data Binding</h1>
+      <label>Name:</label>
+      <input type="text" v-model="name" /> |<< v-model directive will pass the input value in two outputs, one here
+      <span>{{ name }}</span> |<< and another here
+      <label>Age:</label>
+      <input type="text" v-model="age" /> |<< v-model directive will pass the input value in two outputs, one here
+      <span>{{ age }}</span> |<< and another here
+    </div> -->
+
+    <!-- #9 | Computed Properties
+    <div id="vue-app---computed-properties">
+      <h1>Computed Properties</h1>
+      <button @click="a++">Add to A</button>
+      <button v-on:click="b++">Add to B</button>
+      <p>A - {{ a }}</p>
+      <p>B - {{ b }}</p>
+      <p>Age + A == {{ addToA }}</p>
+      <p>Age + B == {{ addToB }}</p>
+    </div> -->
+
+    <!-- #10 | Dynamic CSS
+    <div id="vue-app---dynamic-css">
+      <h1>Dynamic CSS</h1>
+      <h2>Example 1</h2>
+        // <div v-on:click="available = !available" v-bind:class="{available: available}">
+        //  <span>Wolfram</span>
+        // </div>
+      <h2>Example 2</h2>
+        <button v-on:click="nearby = !nearby">Toggle nearby</button>
+        <button @click="available = !available">Toggle available</button>
+        <div v-bind:class="compClasses">
+          <span>Wolfram</span>
+        </div>
+    </div> -->
+
+<!-- #11 | Conditionals (v-if, v-else-if, v-show)
+    <div id="vue-app---conditionals">
+      <h1>Conditionals</h1>
+      <button v-on:click="error = !error">Toggle Error</button>
+      <button v-on:click="success = !success">Toggle Success</button>
+      // <p v-if="error">There has been an error!</p> |<< limitations of js if
+      // <p v-else-if="success">Whooo, success! ^_^</p> |<< limitations of js else-if
+      <p v-show="error">There has been an error!</p>
+      <p v-show="success">Whooo, success! ^_^</p>
+    </div> -->
+
+<!-- #12 | Looping with v-for
+    <div id="vue-app---looping-with-v-for">
+      <h1>Looping througn lists</h1>
+      <ul>
+        <li v-for="character in characters">{{ character }}</li>  |<< "character" is the single item in the array of "characters" which is the data property
+      </ul>
+      <ul>
+        <li v-for="(ghost, index) in ghosts"> {{ index }} . {{ ghost.name }} - {{ ghost.age }}</li> |<< get each property from these objects using single item + "." & name of data in array. & index
+      </ul>
+        <div v-for="(ghost, index) in ghosts"> |<< using divs
+          <h3>{{ index }} . {{ ghost.name }}</h3>
+          <p>{{ ghost.age }}</p>
+        </div>
+        <br>---------
+        <template v-for="(ghost, index) in ghosts"> |<< using template for cleaner view of elements
+          <h3>{{ index }} . {{ ghost.name }}</h3>
+          <p>{{ ghost.age }}</p>
+        </template>
+        <br>---------
+        <template v-for="ghost in ghosts">
+          <div v-for="(val,key) in ghost"> |<< cycle thru the keys & the values per single object in the array
+            <p>{{ key }} - {{ val }}</p>
+          </div>
+        </template>
+    </div> -->
+
+<!-- #13 | Simple Punchbag Game
+    <div id="vue-app---simple-punchbag-game">
+      <!-- bag image -->
+      <!-- <div id="bag" v-bind:class="{ burst: ended }"></div> -->
+
+      <!-- bag health -->
+      <!-- <div id="bag-health">
+        <div v-bind:style="{ width: health + '%'}"></div>
+      </div> -->
+
+      <!-- game controls -->
+      <!-- <div id="controls">
+        <button v-on:click="punch" v-show="!ended">Punch</button>
+        <button @click="restart">Restart</button>
+      </div>
+    </div> // END OF SIMPLE PUNCHBAG GAME -->
+
+<!-- #14 | Multiple Vue Instances
+    <h1>Multiple Vue Instances</h1>
+
+    <div id="vue-app-one---multiple-vue-instances">
+      <h2>{{ title }}</h2>
+      <p>{{ greet }}</p>
+
+    </div>
+
+    <div id="vue-app-two---multiple-vue-instances">
+      <h2>{{ title }}</h2>
+      <p>{{ greet }}</p>
+      <button v-on:click="changeTitle">Change App One Title</button>
+    </div> -->
+
+<!-- #15 | Intro to Components
+    <h1>Components</h1>
+
+    <div id="vue-app-one---intro-to-components">
+      <h2>Vue App One</h2>
+      <greeting></greeting>
+    </div>
+
+    <div id="vue-app-two---intro-to-components">
+      <h2>Vue App Two</h2>
+      <greeting></greeting>
+    </div> -->
+
+<!-- #16 | Referencing with $refs -->
+    <div id="vue-app---referencing-with-refs">
+      <h2>Refs</h2>
+      <input type="text" ref="input">
+      <button @click="readRefs">Submit</button>
+      <p>Your fave food: {{ output }}</p>
+        <div ref="test">Hello</div>
+    </div>
+
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>
